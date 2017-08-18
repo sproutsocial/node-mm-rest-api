@@ -4,8 +4,8 @@ const request = require('superagent');
 const config = require('../mock/superagent-mock');
 var superagent = require('superagent-mock')(request, config);
 
-var authPath = 'https://api-auth-eu.maxymiser.com/oauth2/v1';
-var basePath = 'https://api-eu.maxymiser.com/v1';
+var authPath = 'https://api-auth-us.maxymiser.com/oauth2/v1';
+var basePath = 'https://api-us.maxymiser.com/v1';
 var credentials = {
   clientId: 'clientId',
   clientSecret: 'clientSecret',

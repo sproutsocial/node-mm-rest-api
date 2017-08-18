@@ -48,8 +48,8 @@ npm i git+ssh://git@github.com/leanconvert/node-mm-rest-api.git --save
 const MMRestApi = require('node-mm-rest-api');
 const api = MMRestApi({
   // default values:
-  // authHost: 'https://api-auth-eu.maxymiser.com/oauth2',
-  // host: 'https://api-eu.maxymiser.com',
+  // authHost: 'https://api-auth-us.maxymiser.com/oauth2',
+  // host: 'https://api-us.maxymiser.com',
   // apiVersion: 1,
   credentials: {
     clientId: '<clientId>',

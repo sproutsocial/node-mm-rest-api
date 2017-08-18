@@ -322,7 +322,7 @@ module.exports = [{
    * @param context object the context of running the fixtures function
    */
   fixtures: function (match, params, headers, context) {
-    if (match[1] === 'https://api-auth-eu.maxymiser.com/oauth2/v1/tokens') {
+    if (match[1] === 'https://api-auth-us.maxymiser.com/oauth2/v1/tokens') {
       return {
         params: params,
         headers: headers
@@ -337,7 +337,7 @@ module.exports = [{
    * @param data  mixed Data returns by `fixtures` attribute
    */
   get: function (match, data) {
-    const path = (match[1] || '').replace('https://api-eu.maxymiser.com/v1/', '');
+    const path = (match[1] || '').replace('https://api-us.maxymiser.com/v1/', '');
 
     switch(path) {
       case 'sites':
@@ -369,8 +369,8 @@ module.exports = [{
    */
   post: function (match, data) {
     const path = (match[1] || '')
-      .replace('https://api-eu.maxymiser.com/v1/', '')
-      .replace('https://api-auth-eu.maxymiser.com/oauth2/v1/', '');
+      .replace('https://api-us.maxymiser.com/v1/', '')
+      .replace('https://api-auth-us.maxymiser.com/oauth2/v1/', '');
 
     switch (path) {
       case 'tokens':
@@ -388,7 +388,7 @@ module.exports = [{
 
   put: function (match, data) {
     const path = (match[1] || '')
-      .replace('https://api-eu.maxymiser.com/v1/', '');
+      .replace('https://api-us.maxymiser.com/v1/', '');
 
     switch (path) {
       case 'sites/MzIxMzM/sandbox/scripts/NDMyNDMy':
