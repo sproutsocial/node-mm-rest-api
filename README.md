@@ -31,13 +31,13 @@ Node.js wrapper for the [Oracle Maxymiser REST API](http://docs.oracle.com/cloud
 HTTPS:
 
 ```
-npm i git+https://git@github.com/leanconvert/node-mm-rest-api.git --save
+yarn add git+https://git@github.com/sproutsocial/node-mm-rest-api.git
 ```
 
 SSH:
 
 ```
-npm i git+ssh://git@github.com/leanconvert/node-mm-rest-api.git --save
+yarn add git+ssh://git@github.com/sproutsocial/node-mm-rest-api.git
 ```
 
 # Instantiate
@@ -241,7 +241,9 @@ api.campaigns.elements.create({
   campaignName: 'a31-test',
   // campaignId: 'MzIsdfMzM',
   name: 'Element1',
-  description: ''
+  description: '',
+  // elementId: '',
+  // url: ''
 }).then(result => {
   console.log(result);
 });
