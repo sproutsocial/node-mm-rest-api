@@ -23,6 +23,7 @@ Node.js wrapper for the [Oracle Maxymiser REST API](http://docs.oracle.com/cloud
     + [Create Campaign Script](#create-campaign-script)
     + [Update Campaign Script](#update-campaign-script)
     + [Read Campaign Actions](#read-campaign-actions)
+    + [Create Campaign Action](#create-campaign-action)
     + [Update Campaign Action](#update-campaign-action)
 + [Publishing](#publishing)
 
@@ -383,7 +384,7 @@ api.campaigns.scripts.update({
   scriptId: 'asdfASD3',
   name: 'Rendering',
   description: '',
-  content: 'console.log("test")';
+  content: 'console.log("test")'
 }).then(result {
   console.log(result);
 });
@@ -408,6 +409,42 @@ api.campaigns.actions.get({
   // elementId: 'MDMyMDU4'
 }).then(actions => {
   console.log(actions);
+});
+```
+
+## Create Campaign Action
+
+> http://docs.oracle.com/cloud/latest/marketingcs_gs/OMCGF/op-sites-%7Bsite-id%7D-sandbox-campaigns-%7Bcampaign-id%7D-actions-post.html
+
+```javascript
+api.campaigns.actions.create({
+  siteName: 'test.com',
+  campaignName: 'a31-test',
+  elementName: 'renderer',
+  // siteId: 'MzIxMzM',
+  // campaignId: 'MDA2MjYx',
+  // elementId: 'MDMyMDU4',
+  name: 'renderer',
+  type: 'Click_through',
+  // description: '',
+  scriptContent: 'console.log("test")',
+  // scriptUrl: {
+  //   preview: "https://site.com/",
+  //   includes:[
+  //     "http://site.com/*"
+  //   ],
+  //   excludes:[
+  //     "https://site.com/basket/*",
+  //     "https://site.com/confirmation/*"
+  //   ]
+  // }
+}).then(result {
+  console.log(result);
+});
+
+api.publish({
+  siteId: 'MzIxMzM',
+  // siteName: 'test.com'
 });
 ```
 
