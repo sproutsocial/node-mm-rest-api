@@ -403,10 +403,8 @@ api.publish({
 api.campaigns.actions.get({
   siteName: 'test.com',
   campaignName: 'a31-test',
-  elementName: 'renderer',
   // siteId: 'MzIxMzM',
   // campaignId: 'MDA2MjYx',
-  // elementId: 'MDMyMDU4'
 }).then(actions => {
   console.log(actions);
 });
@@ -420,12 +418,11 @@ api.campaigns.actions.get({
 api.campaigns.actions.create({
   siteName: 'test.com',
   campaignName: 'a31-test',
-  elementName: 'renderer',
   // siteId: 'MzIxMzM',
   // campaignId: 'MDA2MjYx',
-  // elementId: 'MDMyMDU4',
   name: 'renderer',
   type: 'Click_through',
+  isPrimary: true,
   // description: '',
   scriptContent: 'console.log("test")',
   // scriptUrl: {
@@ -456,15 +453,13 @@ api.publish({
 api.campaigns.scripts.update({
   siteName: 'test.com',
   campaignName: 'a31-test',
-  elementName: 'renderer',
   // siteId: 'MzIxMzM',
   // campaignId: 'MDA2MjYx',
-  // elementId: 'MDMyMDU4',
-  actionsId: 'NDMyNDMy',
+  actionsId: 'NDMyNDMy', // use this to attach site/actions as well
   name: 'Action1',
-  description: 'My first action',
+  // description: 'My first action',
   type: 'ClickCounts',
-  isPrimary: 'true'
+  // isPrimary: true
 }).then(result {
   console.log(result);
 });
