@@ -208,7 +208,7 @@ const responses = {
     };
   },
 
-  ['/actions']() {
+  ['/campaigns/actions']() {
     return {
       body: {
         items: [{
@@ -222,7 +222,20 @@ const responses = {
     };
   },
 
-  ['/actions/update']() {
+  ['/campaigns/actions/create']() {
+    return {
+      body: {
+        "id":"NDMyNDMy",
+        "isPrimary":true,
+        "scriptContent":"actions.send( 'Action1', '1' )",
+        "name":"Action1",
+        "description":"My first action",
+        "type":"Click_through"
+      }
+    }
+  },
+
+  ['/campaigns/actions/update']() {
     return {
       body: {
         "id":"NDMyNDMy",
@@ -353,7 +366,7 @@ module.exports = [{
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/elements':
         return responses['/elements']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/actions':
-        return responses['/actions']();
+        return responses['/campaigns/actions']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/scripts':
         return responses['/campaigns/scripts']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/elements/MDMyMDU4/variants':
@@ -379,6 +392,8 @@ module.exports = [{
         return responses['/campaigns/create']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/elements':
         return responses['/elements/create']();
+      case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/actions':
+        return responses['/campaigns/actions/create']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/scripts':
         return responses['/campaigns/scripts/create']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/elements/MDMyMDU4/variants':
@@ -394,7 +409,7 @@ module.exports = [{
       case 'sites/MzIxMzM/sandbox/scripts/NDMyNDMy':
         return responses['/sites/scripts/create']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/actions/NDMyNDMy':
-        return responses['/actions/update']();
+        return responses['/campaigns/actions/update']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/scripts/NDMyNDMy':
         return responses['/campaigns/scripts/update']();
       case 'sites/MzIxMzM/sandbox/campaigns/MDA2MjYx/elements/MDMyMDU4/variants/NDMyNDQ0':

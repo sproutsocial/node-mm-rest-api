@@ -34,6 +34,32 @@ describe('campaigns.actions.get()', () => {
   });
 });
 
+describe('campaigns.actions.create()', () => {
+  it('creates a new action for the selected campaign', () => {
+    var authorize = auth.authorize(token, authPath, credentials);
+    var a = actions(basePath, authorize);
+    var expectedResult = {
+      "id":"NDMyNDMy",
+      "isPrimary":true,
+      "scriptContent":"actions.send( 'Action1', '1' )",
+      "name":"Action1",
+      "description":"My first action",
+      "type":"Click_through"
+    };
+    return a.create({
+      siteId: 'MzIxMzM',
+      campaignId: 'MDA2MjYx',
+      name: 'Action1',
+      description:'My first action',
+      scriptContent:'actions.send( \'Action1\', \'1\' )',
+      type: 'Click_through',
+      isPrimary: true
+    }).then(action => {
+      expect(action).toEqual(expectedResult);
+    });
+  });
+});
+
 describe('campaigns.actions.update()', () => {
   it('updates an action by ID for the selected campaign', () => {
     var authorize = auth.authorize(token, authPath, credentials);
