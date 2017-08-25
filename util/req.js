@@ -1,4 +1,17 @@
 const superagent = require('superagent');
+const Throttle = require('superagent-throttle');
+
+const throttle = new Throttle({
+    active: true,
+    rate: 5,
+    ratePer: 1100 // 1s was failing...this seems good though
+});
+
+const slowThrottle = new Throttle({
+    active: true,
+    rate: 1,
+    ratePer: 1100 // 1s was failing...this seems good though
+});
 
 module.exports = (authorize) => {
   const get = (path, data) => {
@@ -8,6 +21,7 @@ module.exports = (authorize) => {
           superagent
             .get(path)
             .set('Authorization', `Bearer ${token}`)
+            .use(throttle.plugin())
             .end((err, res) => {
               if (err) {
                 reject(err);
@@ -46,6 +60,7 @@ module.exports = (authorize) => {
             .post(path)
             .send(data)
             .set('Authorization', `Bearer ${token}`)
+            .use(slowThrottle.plugin())
             .end((err, res) => {
               if (err) {
                 reject(err);
@@ -65,6 +80,7 @@ module.exports = (authorize) => {
             .put(path)
             .send(data)
             .set('Authorization', `Bearer ${token}`)
+            .use(slowThrottle.plugin())
             .end((err, res) => {
               if (err) {
                 reject(err);

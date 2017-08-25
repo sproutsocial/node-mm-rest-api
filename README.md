@@ -23,6 +23,7 @@ Node.js wrapper for the [Oracle Maxymiser REST API](http://docs.oracle.com/cloud
     + [Create Campaign Script](#create-campaign-script)
     + [Update Campaign Script](#update-campaign-script)
     + [Read Campaign Actions](#read-campaign-actions)
+    + [Create Campaign Action](#create-campaign-action)
     + [Update Campaign Action](#update-campaign-action)
 + [Publishing](#publishing)
 
@@ -31,13 +32,13 @@ Node.js wrapper for the [Oracle Maxymiser REST API](http://docs.oracle.com/cloud
 HTTPS:
 
 ```
-npm i git+https://git@github.com/leanconvert/node-mm-rest-api.git --save
+yarn add git+https://git@github.com/sproutsocial/node-mm-rest-api.git
 ```
 
 SSH:
 
 ```
-npm i git+ssh://git@github.com/leanconvert/node-mm-rest-api.git --save
+yarn add git+ssh://git@github.com/sproutsocial/node-mm-rest-api.git
 ```
 
 # Instantiate
@@ -48,8 +49,8 @@ npm i git+ssh://git@github.com/leanconvert/node-mm-rest-api.git --save
 const MMRestApi = require('node-mm-rest-api');
 const api = MMRestApi({
   // default values:
-  // authHost: 'https://api-auth-eu.maxymiser.com/oauth2',
-  // host: 'https://api-eu.maxymiser.com',
+  // authHost: 'https://api-auth-us.maxymiser.com/oauth2',
+  // host: 'https://api-us.maxymiser.com',
   // apiVersion: 1,
   credentials: {
     clientId: '<clientId>',
@@ -241,7 +242,9 @@ api.campaigns.elements.create({
   campaignName: 'a31-test',
   // campaignId: 'MzIsdfMzM',
   name: 'Element1',
-  description: ''
+  description: '',
+  // elementId: '',
+  // url: ''
 }).then(result => {
   console.log(result);
 });
@@ -381,7 +384,7 @@ api.campaigns.scripts.update({
   scriptId: 'asdfASD3',
   name: 'Rendering',
   description: '',
-  content: 'console.log("test")';
+  content: 'console.log("test")'
 }).then(result {
   console.log(result);
 });
@@ -400,12 +403,45 @@ api.publish({
 api.campaigns.actions.get({
   siteName: 'test.com',
   campaignName: 'a31-test',
-  elementName: 'renderer',
   // siteId: 'MzIxMzM',
   // campaignId: 'MDA2MjYx',
-  // elementId: 'MDMyMDU4'
 }).then(actions => {
   console.log(actions);
+});
+```
+
+## Create Campaign Action
+
+> http://docs.oracle.com/cloud/latest/marketingcs_gs/OMCGF/op-sites-%7Bsite-id%7D-sandbox-campaigns-%7Bcampaign-id%7D-actions-post.html
+
+```javascript
+api.campaigns.actions.create({
+  siteName: 'test.com',
+  campaignName: 'a31-test',
+  // siteId: 'MzIxMzM',
+  // campaignId: 'MDA2MjYx',
+  name: 'renderer',
+  type: 'Click_through',
+  isPrimary: true,
+  // description: '',
+  scriptContent: 'console.log("test")',
+  // scriptUrl: {
+  //   preview: "https://site.com/",
+  //   includes:[
+  //     "http://site.com/*"
+  //   ],
+  //   excludes:[
+  //     "https://site.com/basket/*",
+  //     "https://site.com/confirmation/*"
+  //   ]
+  // }
+}).then(result {
+  console.log(result);
+});
+
+api.publish({
+  siteId: 'MzIxMzM',
+  // siteName: 'test.com'
 });
 ```
 
@@ -417,15 +453,13 @@ api.campaigns.actions.get({
 api.campaigns.scripts.update({
   siteName: 'test.com',
   campaignName: 'a31-test',
-  elementName: 'renderer',
   // siteId: 'MzIxMzM',
   // campaignId: 'MDA2MjYx',
-  // elementId: 'MDMyMDU4',
-  actionsId: 'NDMyNDMy',
+  actionsId: 'NDMyNDMy', // use this to attach site/actions as well
   name: 'Action1',
-  description: 'My first action',
+  // description: 'My first action',
   type: 'ClickCounts',
-  isPrimary: 'true'
+  // isPrimary: true
 }).then(result {
   console.log(result);
 });
